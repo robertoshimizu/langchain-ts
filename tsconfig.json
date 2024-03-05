@@ -1,9 +1,18 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
-    "target": "ES2023",
+    "target": "ES2022",
     "module": "commonjs",
+    "rootDir": "src",
     "esModuleInterop": true,
+    "strict": true,
     "allowJs": true,
-  }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
 }
