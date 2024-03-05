@@ -29,5 +29,10 @@
     "@langchain/anthropic": "^0.1.2",
     "dotenv": "^16.4.5",
     "langchain": "^0.1.25"
+  },
+  "pnpm": {
+    "overrides": {
+      "@langchain/core": "^0.1.41"
+    }
   }
 }
