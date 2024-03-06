@@ -1,4 +1,4 @@
-import add from './addi'
+import add from './lib/addi'
 
 // npx ts-node src/hello.ts
 const message: string = 'Hello, TypeScript!'
