@@ -2,17 +2,18 @@ import { CheerioWebBaseLoader } from 'langchain/document_loaders/web/cheerio'
 
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter'
 
-import { OpenAIEmbeddings } from '@langchain/openai'
+import { OpenAI, OpenAIEmbeddings } from '@langchain/openai'
 import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 import dotenv from 'dotenv'
 
 import { createStuffDocumentsChain } from 'langchain/chains/combine_documents'
 import { ChatPromptTemplate, PromptTemplate } from '@langchain/core/prompts'
 import { chatModel } from '../models/anthropic'
-// import { Document } from '@langchain/core/documents'
+import { Document } from '@langchain/core/documents'
 import { createRetrievalChain } from 'langchain/chains/retrieval'
 import { StringOutputParser } from '@langchain/core/output_parsers'
-import { RunnableBranch, RunnablePassthrough, RunnableSequence } from '@langchain/core/runnables'
+import { RunnableBranch, RunnableLambda, RunnableMap, RunnablePassthrough, RunnableSequence } from '@langchain/core/runnables'
+import { HNSWLib } from '@langchain/community/vectorstores/hnswlib'
 
 dotenv.config()
 
@@ -229,9 +230,90 @@ Answer:`
   console.log(result1)
 }
 
-async function main () {
-  
+async function another () {
+  const prompt = ChatPromptTemplate.fromMessages([
+    ['human', 'Tell me a short joke about {topic}']
+  ])
+  const promptValue = await prompt.invoke({ topic: 'ice cream' })
+  console.log(promptValue)
+  /**
+ChatPromptValue {
+  messages: [
+    HumanMessage {
+      content: 'Tell me a short joke about ice cream',
+      name: undefined,
+      additional_kwargs: {}
+    }
+  ]
 }
+ */
+  const promptAsMessages = promptValue.toChatMessages()
+  console.log(promptAsMessages)
+  /**
+[
+  HumanMessage {
+    content: 'Tell me a short joke about ice cream',
+    name: undefined,
+    additional_kwargs: {}
+  }
+]
+ */
+  const promptAsString = promptValue.toString()
+  console.log(promptAsString)
+  /**
+Human: Tell me a short joke about ice cream
+ */
+
+  const model = chatModel()
+  const outputParser = new StringOutputParser()
+
+  const chain = prompt.pipe(model).pipe(outputParser)
+
+  const response = await chain.invoke({
+    topic: 'ice cream'
+  })
+  console.log(response)
+}
+
+async function RunnableMapped () {
+  const vectorStore = await HNSWLib.fromDocuments(
+    [
+      new Document({ pageContent: 'Harrison worked at Kensho' }),
+      new Document({ pageContent: 'Bears like to eat honey.' })
+    ],
+    new OpenAIEmbeddings()
+  )
+  const retriever = vectorStore.asRetriever(1)
+
+  const prompt = ChatPromptTemplate.fromMessages([
+    [
+      'ai',
+    `Answer the question based on only the following context:
+  
+{context}`
+    ],
+    ['human', '{question}']
+  ])
+
+  const model = new OpenAI({})
+
+  const outputParser = new StringOutputParser()
+
+  const setupAndRetrieval = RunnableMap.from({
+    context: new RunnableLambda({
+      func: async (input: string) =>
+        retriever.invoke(input).then((response) => response[0].pageContent)
+    }).withConfig({ runName: 'contextRetriever' }),
+    question: new RunnablePassthrough()
+  })
+  // const chain = setupAndRetrieval.pipe(prompt).pipe(model).pipe(outputParser)
+  const chain = setupAndRetrieval.pipe(prompt)
+
+  const response = await chain.invoke('Where did Harrison work?')
+  console.log(response)
+}
+
+
 
 // npx ts-node src/lcel/retrieval_chain.ts
 void main()
