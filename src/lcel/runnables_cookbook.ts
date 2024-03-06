@@ -351,13 +351,13 @@ async function main () {
     {
       input: new RunnablePassthrough(),
       database: async () => 'animals'
-    },
+    }, // here it added a new key to the object
     new RunnableLambda({
       func: async (messages: IMessage) => {
         console.log(messages.database)
         return messages.input
       }
-    }).withConfig({ runName: 'unroll messages' }),
+    }).withConfig({ runName: 'unroll messages' }), // here it removed the key from the object
     chatModel(),
     outputParser
   ])
