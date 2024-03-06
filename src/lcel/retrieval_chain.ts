@@ -9,7 +9,8 @@ import dotenv from 'dotenv'
 import { createStuffDocumentsChain } from 'langchain/chains/combine_documents'
 import { ChatPromptTemplate } from '@langchain/core/prompts'
 import { chatModel } from '../models/anthropic'
-import { Document } from '@langchain/core/documents'
+// import { Document } from '@langchain/core/documents'
+import { createRetrievalChain } from 'langchain/chains/retrieval'
 
 dotenv.config()
 
@@ -22,7 +23,8 @@ process.env.OPENAI_API_KEY
  * @returns {Promise<Record<string, any>>[]}
 */
 
-async function cheerio (url: string): Promise<Array<Record<string, any>>> {
+async function cheerio (url: string = 'https://docs.smith.langchain.com/user_guide'): Promise<Array<Record<string, any>>> {
+  console.log(url)
   const loader = new CheerioWebBaseLoader(
     url
   )
@@ -62,21 +64,18 @@ const embeddings = new OpenAIEmbeddings()
  * @returns {Promise<void>}
 */
 
-async function memoryVectorStore (splitDocs: any, embeddings: any) {
-  const vectorstore = await MemoryVectorStore.fromDocuments(
+const memoryVectorStore = async (splitDocs?: any, embeddings?: any) => {
+  const vec = await MemoryVectorStore.fromDocuments(
     splitDocs,
     embeddings
   )
-  return vectorstore
+  return vec
 }
-
 /**
  * This chain will take an incoming question, look up relevant documents, then pass those documents along with the original question into an LLM and ask it to answer the original question.
- * @param {string} question - the question to be answered
- * @param {string} url - the url of the webpage to be searched
- * @returns {RunnableSequence<Record<string, unknown>, string>}
+ * @returns {Runnable}
  */
-const retrievalChain = async () => {
+const retrievalChain = async (retriever?: any) => {
   const prompt =
   ChatPromptTemplate.fromTemplate(`Answer the following question based only on the provided context:
 
@@ -91,31 +90,47 @@ const retrievalChain = async () => {
     prompt
   })
 
-  return documentChain
+  // const vectorstore = await memoryVectorStore()
+
+  // const retriever = vectorstore.asRetriever()
+
+  const retrievalChain = await createRetrievalChain({
+    combineDocsChain: documentChain,
+    retriever
+  })
+
+  return retrievalChain
 }
 
 /**
  * Main function
  */
 async function main () {
-  const url = 'https://docs.smith.langchain.com/user_guide'
-  const docs = await cheerio(url)
+  // const url = 'https://docs.smith.langchain.com/user_guide'
+  const docs = await cheerio()
   const splitDocs = await docSplitter(docs)
   const vectorstore = await memoryVectorStore(splitDocs, embeddings)
+  const retriever = vectorstore.asRetriever()
 
   const question = 'what is LangSmith?'
 
-  const documentChain = await retrievalChain()
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const retrieval_chain = await retrievalChain(retriever)
 
-  await documentChain.invoke({
-    input: question,
-    context: [
-      new Document({
-        pageContent:
-        'LangSmith is a platform for building production-grade LLM applications.'
-      })
-    ]
+  // await documentChain.invoke({
+  //   input: question,
+  //   context: [
+  //     new Document({
+  //       pageContent:
+  //       'LangSmith is a platform for building production-grade LLM applications.'
+  //     })
+  //   ]
+  // })
+  const result = await retrieval_chain.invoke({
+    input: question
   })
+
+  console.log(result.answer)
 }
 
 // npx ts-node src/lcel/retrieval_chain.ts
