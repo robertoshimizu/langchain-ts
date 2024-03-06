@@ -313,7 +313,27 @@ async function RunnableMapped () {
   console.log(response)
 }
 
+async function main () {
+  const prompt = ChatPromptTemplate.fromMessages([
+    ['human', 'Tell me a short joke about {topic}']
+  ])
+  const outputParser = new StringOutputParser()
 
+  const expert = RunnableSequence.from([
+    prompt,
+    new RunnableLambda({
+      func: async (input: string) => {
+        console.log(input)
+        return 'dogs'
+      }
+    }).withConfig({ runName: 'contextRetriever' }),
+    chatModel(),
+    outputParser
+  ])
+
+  const response = await expert.invoke({ topic: 'cats' })
+  console.log(response)
+}
 
 // npx ts-node src/lcel/retrieval_chain.ts
 void main()
