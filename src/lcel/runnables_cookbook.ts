@@ -313,7 +313,7 @@ async function RunnableMapped () {
   console.log(response)
 }
 
-async function main () {
+async function RunnableLambd () {
   const prompt = ChatPromptTemplate.fromMessages([
     ['human', 'Tell me a short joke about {topic}']
   ])
@@ -327,6 +327,37 @@ async function main () {
         return 'dogs'
       }
     }).withConfig({ runName: 'contextRetriever' }),
+    chatModel(),
+    outputParser
+  ])
+
+  const response = await expert.invoke({ topic: 'cats' })
+  console.log(response)
+}
+
+async function main () {
+  interface IMessage {
+    database: string
+    input: any
+  }
+
+  const prompt = ChatPromptTemplate.fromMessages([
+    ['human', 'Tell me a short joke about {topic}']
+  ])
+  const outputParser = new StringOutputParser()
+
+  const expert = RunnableSequence.from([
+    prompt,
+    {
+      input: new RunnablePassthrough(),
+      database: async () => 'animals'
+    },
+    new RunnableLambda({
+      func: async (messages: IMessage) => {
+        console.log(messages.database)
+        return messages.input
+      }
+    }).withConfig({ runName: 'unroll messages' }),
     chatModel(),
     outputParser
   ])
