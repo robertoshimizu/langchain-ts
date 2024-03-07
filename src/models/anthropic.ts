@@ -5,8 +5,9 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-export const chatModel = new ChatAnthropic({
-  anthropicApiKey: process.env.ANTHROPIC_API_KEY
+export const chatModel = (model: string = 'claude-3-sonnet-20240229') => new ChatAnthropic({
+  anthropicApiKey: process.env.ANTHROPIC_API_KEY,
+  modelName: model
 })
 
 // async function main () {
