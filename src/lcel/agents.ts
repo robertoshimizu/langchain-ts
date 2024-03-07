@@ -97,7 +97,8 @@ async function main () {
 
   const agentExecutor = new AgentExecutor({
     agent,
-    tools
+    tools,
+    returnIntermediateSteps: true
   })
 
   const result1 = await agentExecutor.invoke({
