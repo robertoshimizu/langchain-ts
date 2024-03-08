@@ -23,9 +23,23 @@ async function main () {
   const question = await askQuestion('O que você gostaria de pesquisar hoje? ')
   console.log(`query: ${question}!`)
 
-  const response = await research_gpt.invoke({
-    question: `${question}`
-  })
+  // get category
+
+  // test clarification with a loop
+
+  // send question along with clarification to research_gpt
+
+  const response = await research_gpt.invoke(
+    {
+      question: `${question}`,
+      context: 'medical'
+    },
+    {
+      tags: ['abracadabra'],
+      metadata: {
+        description: 'dente de cabra'
+      }
+    })
   console.log('response', response)
 }
 
