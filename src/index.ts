@@ -1,4 +1,7 @@
 import * as readline from 'readline'
+import { research_gpt } from './research_gpt/research_gpt'
+import dotenv from 'dotenv'
+dotenv.config()
 
 async function askQuestion (question: string): Promise<string> {
   const rl = readline.createInterface({
@@ -17,8 +20,13 @@ async function askQuestion (question: string): Promise<string> {
 async function main () {
   console.log('\n***************** Welcome to the GPT Research Assistant *****************\n')
 
-  const name = await askQuestion('O que você gostaria de pesquisar hoje? ')
-  console.log(`query: ${name}!`)
+  const question = await askQuestion('O que você gostaria de pesquisar hoje? ')
+  console.log(`query: ${question}!`)
+
+  const response = await research_gpt.invoke({
+    question: `${question}`
+  })
+  console.log('response', response)
 }
 
 // npx ts-node src/index.ts

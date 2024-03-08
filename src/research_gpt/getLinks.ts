@@ -1,9 +1,9 @@
-import { Documento, QuestionItem } from './entities'
+import { type Documento, type QuestionItem } from './entities'
 import { SerpApi } from './serpapi'
 import { webScraper } from './web_scraper'
 
-export async function getLinks(input: string): Promise<Documento[]> {
-  //console.log('Getting links for:', input)
+export async function getLinks (input: string): Promise<Documento[]> {
+  // console.log('Getting links for:', input)
   try {
     const serpai = new SerpApi()
     const searches = await serpai.searchLink(input)
@@ -14,9 +14,9 @@ export async function getLinks(input: string): Promise<Documento[]> {
   return []
 }
 
-function extractCodeFromUrl(
+function extractCodeFromUrl (
   url: string
-): { type: string; code: string } | null {
+): { type: string, code: string } | null {
   const patterns = {
     statsPearl: /https:\/\/www\.ncbi\.nlm\.nih\.gov\/books\/(NBK\d+)/,
     pmc: /https:\/\/www\.ncbi\.nlm\.nih\.gov\/pmc\/articles\/(PMC\d+)/,
@@ -34,7 +34,7 @@ function extractCodeFromUrl(
   return null
 }
 
-export async function processLinks(items: QuestionItem[]): Promise<any[]> {
+export async function processLinks (items: QuestionItem[]): Promise<any[]> {
   // Map over each category to process its links in parallel
   if (items.length === 0) {
     console.log('No links processed')
@@ -49,7 +49,7 @@ export async function processLinks(items: QuestionItem[]): Promise<any[]> {
 
       // Process each link in the category in parallel
       const scrapeData = await webScraper(category, item.url)
-      //console.log('Scraped link for :', item.url)
+      // console.log('Scraped link for :', item.url)
 
       return {
         question: item.question,

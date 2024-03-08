@@ -13,7 +13,7 @@ interface SerpApiPayload {
 
 export class SerpApi {
   private readonly api_key: string
-  constructor() {
+  constructor () {
     const SERPAPI_API_KEY = process.env.SERPAPI_API_KEY // Load API key from environment variable
     if (SERPAPI_API_KEY == null) {
       throw new Error(
@@ -23,7 +23,7 @@ export class SerpApi {
     this.api_key = SERPAPI_API_KEY
   }
 
-  async searchLink(query: string): Promise<Documento[]> {
+  async searchLink (query: string): Promise<Documento[]> {
     const source =
       'site:scielo.br/ OR site:ncbi.nlm.nih.gov/pmc/ OR site:cochranelibrary.com/ OR site:drugs.com/pro/ OR site:medscape.com/ OR site:ncbi.nlm.nih.gov/books/ OR site:merckmanuals.com/professional/ OR site:nice.org.uk/guidance/ OR site:who.int/publications/ OR site:cdc.gov'
     const payload: SerpApiPayload = {

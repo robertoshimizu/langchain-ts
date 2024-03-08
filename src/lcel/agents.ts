@@ -4,10 +4,11 @@ import { CheerioWebBaseLoader } from 'langchain/document_loaders/web/cheerio'
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter'
 import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 import { createRetrieverTool } from 'langchain/tools/retriever'
-import dotenv from 'dotenv'
+
 import { type ChatPromptTemplate } from '@langchain/core/prompts'
 import { AgentExecutor, createOpenAIFunctionsAgent } from 'langchain/agents'
 import { pull } from 'langchain/hub'
+import dotenv from 'dotenv'
 dotenv.config()
 
 function search () {
