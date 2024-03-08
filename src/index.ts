@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import * as readline from 'readline'
+import OpenAI from 'openai'
 import { research_gpt } from './research_gpt/research_gpt'
 import dotenv from 'dotenv'
 dotenv.config()
@@ -41,6 +43,38 @@ async function main () {
       }
     })
   console.log('response', response)
+
+  const prompt = `Your goal here is to provide an evidence-based evaluation of the efficacy of a specific health technology. The assessment should be grounded in systematic reviews and meta-analyses, with special emphasis on high-quality studies, such as Cochrane systematic reviews and reviews based on high-quality randomized controlled trials. \
+       Step 1: Identification of the Health Technology: 
+          - Briefly describe the health technology to be evaluated; 
+          - Specify the clinical context or application of the technology.  \
+       Step 2: Analysis of Systematic Review Abstracts: 
+         - You will receive a selection of abstracts from systematic reviews related to the health technology in question; 
+          - Analyze each abstract, identifying and prioritizing the following sources: 1) Cochrane systematic reviews, known for their rigorous methodology and relevance; 2) Reviews based on high-quality randomized controlled trials, indicating superior methodological robustness.
+          - Focus on evaluating the methodological quality, main results, and conclusions presented in the abstracts, especially those from highly reliable sources. \
+        Step 3: Data Evaluation: Summarize the main findings of the systematic reviews, highlighting: 1) The methodological quality of the reviews; 2) The principal results and conclusions regarding the efficacy of the technology; 3) Any variation in the results that may impact the interpretation of efficacy. \
+        Step 4: Synthesis and Recommendations: 
+           - Based on the collected data, provide a critical synthesis, evaluating the efficacy of the health technology.
+           - Highlight whether the technology is cost-effective, considering the clinical benefits relative to costs.
+           - Provide practical recommendations for health managers, indicating whether the technology should be adopted, monitored, or reevaluated. \ 
+        Conclusion: 
+           - Present a concise conclusion on the health technology assessment, based on the evidence found.
+          - Indicate any gaps in the literature and suggest areas for future research.
+          
+          abstracts """${JSON.stringify(response?.research_summary)}"""`
+
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+  })
+
+  const res = await openai.chat.completions.create({
+    model: 'gpt-4-1106-preview',
+    messages: [{ role: 'user', content: prompt }],
+    seed: 42,
+    temperature: 0.0
+  })
+
+  console.log('res', res.choices[0].message.content)
 }
 
 // npx ts-node src/index.ts

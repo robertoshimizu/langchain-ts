@@ -8,18 +8,18 @@ interface IScraper {
   scrape: (url: string) => Promise<string>
 }
 
-function extractNBKNumber(url: string): string | null {
+function extractNBKNumber (url: string): string | null {
   const match = url.match(/NBK(\d+)/)
   return match != null ? match[1] : null
 }
 
-function extractPMCNumber(url: string): string | null {
+function extractPMCNumber (url: string): string | null {
   const match = url.match(/PMC(\d+)/)
   return match != null ? match[1] : null
 }
 
 class StatsPearlScraper implements IScraper {
-  async scrape(url: string): Promise<string> {
+  async scrape (url: string): Promise<string> {
     // Specific scraping logic for books
     const NBK = extractNBKNumber(url)
     const api = `https://api.ncbi.nlm.nih.gov/lit/oai/books/?verb=GetRecord&identifier=oai:books.ncbi.nlm.nih.gov:${NBK}&metadataPrefix=nbk_ftext`
@@ -44,7 +44,7 @@ class StatsPearlScraper implements IScraper {
 }
 
 class PMCScraper implements IScraper {
-  async scrape(url: string): Promise<string> {
+  async scrape (url: string): Promise<string> {
     // Specific scraping logic for articles
     const PMC = extractPMCNumber(url)
     const api = `https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_xml/PMC${PMC}/unicode`
@@ -68,21 +68,21 @@ class PMCScraper implements IScraper {
 }
 
 class MedscapeScraper implements IScraper {
-  async scrape(url: string): Promise<string> {
+  async scrape (url: string): Promise<string> {
     // Specific scraping logic for Medscape
     return 'Scraped data for Medscape'
   }
 }
 
 class DrugsScraper implements IScraper {
-  async scrape(url: string): Promise<string> {
+  async scrape (url: string): Promise<string> {
     // Specific scraping logic for Drugs.com
     return 'Scraped data for Drugs.com'
   }
 }
 
 class OthersScraper implements IScraper {
-  async scrape(url: string): Promise<string> {
+  async scrape (url: string): Promise<string> {
     try {
       const response = await fetch(url)
       const htmlContent = await response.text()
@@ -114,7 +114,7 @@ class OthersScraper implements IScraper {
   }
 }
 
-export async function webScraper(category: string, url: string): Promise<any> {
+export async function webScraper (category: string, url: string): Promise<any> {
   let scraper: IScraper
 
   switch (category) {

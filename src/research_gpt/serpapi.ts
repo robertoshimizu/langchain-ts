@@ -43,7 +43,7 @@ export class SerpApi {
 
         return { pageContent, metadata }
       })
-      return documents.length < 3 ? documents : documents.slice(0, 3)
+      return documents.length < 20 ? documents : documents.slice(0, 20)
     } catch (error) {
       console.log('Error retrieving SerpAPILoader:', error)
       return []

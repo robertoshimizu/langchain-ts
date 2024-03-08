@@ -1,7 +1,7 @@
 import { ChatPromptTemplate, PromptTemplate } from '@langchain/core/prompts'
 
 export const summary_template = PromptTemplate.fromTemplate(
-  '<<< {text} >>> Using the above text, extract the minimum necessary information to answer the question: > {question} ----------- if the question cannot be answered using the text, imply summarize the text. Include all factual information, numbers, stats etc if available.'
+  '<<< {text} >>> Using the above text, summarize it from the perspective of Health Technology Assessment, highlighting very clearly if study used randomized clinical trials ----------- if you cannot use the text, imply summarize the text. Include all factual information, numbers, stats etc if available.'
 )
 
 export const WRITER_SYSTEM_PROMPT =

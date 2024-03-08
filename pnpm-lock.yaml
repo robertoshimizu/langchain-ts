@@ -29,6 +29,9 @@ dependencies:
   langchain:
     specifier: ^0.1.25
     version: 0.1.25(cheerio@1.0.0-rc.12)(hnswlib-node@2.1.1)
+  openai:
+    specifier: ^4.28.4
+    version: 4.28.4
 
 devDependencies:
   '@types/node':
