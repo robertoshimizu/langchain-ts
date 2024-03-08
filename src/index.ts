@@ -60,6 +60,14 @@ async function main () {
         Conclusion: 
            - Present a concise conclusion on the health technology assessment, based on the evidence found.
           - Indicate any gaps in the literature and suggest areas for future research.
+
+        In your response you MUST refer to each abstract as its title or source and 
+        include a superscript number or parentheses that link directly 
+        to number listed in the Reference section, detailed next.
+
+        YOU must at the end of the response, provide a "References" section with the 
+        full citation details for the source, including the name of the source and full clickable url. 
+        Make sure to not add duplicated sources, but only one reference for each.
           
           abstracts """${JSON.stringify(response?.research_summary)}"""`
 
