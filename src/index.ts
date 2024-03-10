@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import * as readline from 'readline'
 import OpenAI from 'openai'
 import { research_gpt } from './research_gpt/research_gpt'
 import dotenv from 'dotenv'
+import { getMedicalArticles } from './pubmed/pubmed_articles'
 dotenv.config()
 
 async function askQuestion (question: string): Promise<string> {
@@ -19,18 +21,8 @@ async function askQuestion (question: string): Promise<string> {
   })
 }
 
-async function main () {
+async function runResearchGpt (question: any) {
   console.log('\n***************** Welcome to the GPT Research Assistant *****************\n')
-
-  const question = await askQuestion('O que você gostaria de pesquisar hoje? ')
-  console.log(`query: ${question}!`)
-
-  // get category
-
-  // test clarification with a loop
-
-  // send question along with clarification to research_gpt
-
   const response = await research_gpt.invoke(
     {
       question: `${question}`,
@@ -47,7 +39,7 @@ async function main () {
   const prompt = `Your goal here is to provide an evidence-based evaluation of the efficacy of a specific health technology. The assessment should be grounded in systematic reviews and meta-analyses, with special emphasis on high-quality studies, such as Cochrane systematic reviews and reviews based on high-quality randomized controlled trials. \
        Step 1: Identification of the Health Technology: 
           - Briefly describe the health technology to be evaluated; 
-          - Specify the clinical context or application of the technology.  \
+          - Specify the clinical context or application of the technology.
        Step 2: Analysis of Systematic Review Abstracts: 
          - You will receive a selection of abstracts from systematic reviews related to the health technology in question; 
           - Analyze each abstract, identifying and prioritizing the following sources: 1) Cochrane systematic reviews, known for their rigorous methodology and relevance; 2) Reviews based on high-quality randomized controlled trials, indicating superior methodological robustness.
@@ -56,7 +48,7 @@ async function main () {
         Step 4: Synthesis and Recommendations: 
            - Based on the collected data, provide a critical synthesis, evaluating the efficacy of the health technology.
            - Highlight whether the technology is cost-effective, considering the clinical benefits relative to costs.
-           - Provide practical recommendations for health managers, indicating whether the technology should be adopted, monitored, or reevaluated. \ 
+           - Provide practical recommendations for health managers, indicating whether the technology should be adopted, monitored, or reevaluated.
         Conclusion: 
            - Present a concise conclusion on the health technology assessment, based on the evidence found.
           - Indicate any gaps in the literature and suggest areas for future research.
@@ -83,6 +75,16 @@ async function main () {
   })
 
   console.log('res', res.choices[0].message.content)
+  return res.choices[0].message.content
+}
+
+async function main () {
+  const question = await askQuestion('O que você gostaria de pesquisar hoje? ')
+  console.log(`query: ${question}!`)
+
+  // const HTC = await runResearchGpt(question)
+
+  await getMedicalArticles(question)
 }
 
 // npx ts-node src/index.ts
