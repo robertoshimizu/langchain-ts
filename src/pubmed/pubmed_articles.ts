@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/naming-convention */
 import dotenv from 'dotenv'
@@ -31,15 +32,15 @@ export async function getMedicalArticles (
     console.log('PUBMED: **********************')
     // trazer os arquivos através da API no pubmed
     const db = 'pubmed'
-    const retmax = 1// Total number of Docs from the input set to be retrieved, up to a maximum of 10,000.
+    const retmax = 2// Total number of Docs from the input set to be retrieved, up to a maximum of 10,000.
     let retmode = 'xml' // Retrieval type. Determines the format of the returned output. The default value is ‘xml’ for ESummary XML, but ‘json’ is also supported to return output in JSON format.
     const mindate = '2000'
     const maxdate = '2024'
     const sort = 'relevance'
     const pubmed_key = process.env.PUBMED_API_KEY
 
-    const term = `(${medTerm})+AND+(review[FILT]+OR+'systematic review'[FILT]+OR+'meta-analysis'[FILT]+OR+'guideline'[FILT])+AND+(freetext [FILT])`
-
+    // const term = `(${medTerm})+AND+(review[FILT]+OR+'systematic review'[FILT]+OR+'meta-analysis'[FILT]+OR+'guideline'[FILT])+AND+(freetext [FILT])`
+    const term = `(${medTerm})+AND+('systematic review'[FILT])`
     // // Assemble the eSearch URL
     const base = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
     let url = `${base}esearch.fcgi?db=${db}&term=${term}&usehistory=y&retmax=${retmax}&retmode=${retmode}&mindate=${mindate}&maxdate=${maxdate}&sort=${sort}&api_key=${pubmed_key}`
@@ -56,7 +57,7 @@ export async function getMedicalArticles (
     console.log(parameters)
 
     const rettype = 'abstract' // Retrieval type. This parameter specifies the record view returned, such as Abstract or MEDLINE from PubMed, or GenPept or FASTA from protein. Please see Table 1 for a full list of allowed values for each database.
-    retmode = 'xml' // Retrieval mode. This parameter specifies the data format of the records returned, such as plain text, HMTL or XML. See Table 1 for a full list of allowed values for each database.
+    retmode = 'text' // Retrieval mode. This parameter specifies the data format of the records returned, such as plain text, HMTL or XML. See Table 1 for a full list of allowed values for each database.
 
     url = `${base}efetch.fcgi?db=${db}&query_key=${parameters.queryKey}&WebEnv=${parameters.webEnv}&rettype=${rettype}&retmode=${retmode}&retmax=${retmax}&api_key=${pubmed_key}`
 
@@ -91,14 +92,14 @@ export async function getMedicalArticles (
     // ${listOfArticles}
     // """
     // `
-    console.log('************************************************')
-    console.log('PubMed articles:', listOfArticles)
-    console.log('************************************************')
+    // console.log('************************************************')
+    // console.log('PubMed articles:', listOfArticles)
+    // console.log('************************************************')
 
-    const jason = await xmlToJson(listOfArticles)
-    console.log('jason', jason)
+    // const jason = await xmlToJson(listOfArticles)
+    // console.log('jason', jason)
 
-    return 'success'
+    return listOfArticles
   } catch (error) {
     console.log('error', error)
 

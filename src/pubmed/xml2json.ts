@@ -21,13 +21,15 @@ export async function xmlToJson (xml: string): Promise<any> {
           lastName: author.LastName,
           foreName: author.ForeName,
           initials: author.Initials,
-          affiliation: author.AffiliationInfo ? author.AffiliationInfo.Affiliation : null
+          affiliation: author.AffiliationInfo ? author.AffiliationInfo.Affiliation : null,
+          collectiveName: author.CollectiveName ? author.CollectiveName : undefined
         }))
         : [{
             lastName: articleInfo.AuthorList.Author.LastName,
             foreName: articleInfo.AuthorList.Author.ForeName,
             initials: articleInfo.AuthorList.Author.Initials,
-            affiliation: articleInfo.AuthorList.Author.AffiliationInfo ? articleInfo.AuthorList.Author.AffiliationInfo.Affiliation : null
+            affiliation: articleInfo.AuthorList.Author.AffiliationInfo ? articleInfo.AuthorList.Author.AffiliationInfo.Affiliation : null,
+            collectiveName: articleInfo.AuthorList.Author.CollectiveName ? articleInfo.AuthorList.Author.CollectiveName : undefined
           }],
       typeOfArticle: Array.isArray(articleInfo.PublicationTypeList.PublicationType) ? articleInfo.PublicationTypeList.PublicationType.map((type: any) => type._) : [articleInfo.PublicationTypeList.PublicationType._],
       publicationOrJournal: {
@@ -49,7 +51,15 @@ export async function xmlToJson (xml: string): Promise<any> {
         pii: articleInfo.ELocationID.find((e: { EIdType: string }) => e.EIdType === 'pii')?._,
         pmc: pubmedData.ArticleIdList.ArticleId.find((id: any) => id.IdType === 'pmc')?._
       },
-      contentOfAbstract: abstractsArray.map((text: any) => ({ label: text.Label, content: text._ ? text._ : text }))
+      contentOfAbstract: abstractsArray.map((text: any) => ({ label: text.Label, content: text._ ? text._ : text })),
+      fundingInformation: medlineCitation.GrantList
+        ? medlineCitation.GrantList.Grant.map((grant: any) => ({
+          grantId: grant.GrantID,
+          agency: grant.Agency,
+          country: grant.Country
+        }))
+        : [],
+      conflictOfInterest: medlineCitation.CoiStatement ? medlineCitation.CoiStatement : undefined
     }
 
     return json
