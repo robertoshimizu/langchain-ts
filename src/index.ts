@@ -32,14 +32,13 @@ async function chatResponse (abstracts: string) {
           - Focus on evaluating the methodological quality, main results, and conclusions presented in the abstracts, especially those from highly reliable sources.
           - Summarize the main findings of the systematic reviews, highlighting: 1) The methodological quality of the reviews; 2) The principal results and conclusions regarding the efficacy of the technology; 3) Any variation in the results that may impact the interpretation of efficacy.
           - make this summary as detailed and complete as possible, including all the relevant information from the abstracts.
-        3. Data Evaluation: Summarize the main findings of the systematic reviews, highlighting: 1) The methodological quality of the reviews; 2) The principal results and conclusions regarding the efficacy of the technology; 3) Any variation in the results that may impact the interpretation of efficacy. \
-        4. Synthesis and Recommendations: 
+        3. Synthesis and Recommendations: 
            - Based on the collected data, provide a critical synthesis, evaluating the efficacy of the health technology.
            - give the quantitative and qualitative facts about the abstracts analyzed, to show that the sample is representative.
            - Highlight whether the technology is cost-effective, considering the clinical benefits relative to costs.
            - Provide practical recommendations for health managers, indicating whether the technology should be adopted, monitored, or reevaluated.
            - Write this summary and recommendations as detailed and complete as possible, including all the relevant information from the abstracts, as if it would be the only part that would give the reader a sense of the health technology assessment.
-        5. Conclusion: 
+        4. Conclusion: 
            - Present a throughly conclusion on the health technology assessment, based on the evidence found.
           - Indicate any gaps in the literature and suggest areas for future research.
 
