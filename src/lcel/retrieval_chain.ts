@@ -2,7 +2,7 @@ import { CheerioWebBaseLoader } from 'langchain/document_loaders/web/cheerio'
 
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter'
 
-import { OpenAIEmbeddings } from '@langchain/openai'
+import { ChatOpenAI, OpenAIEmbeddings } from '@langchain/openai'
 import { MemoryVectorStore } from 'langchain/vectorstores/memory'
 import dotenv from 'dotenv'
 
@@ -21,13 +21,13 @@ process.env.OPENAI_API_KEY
  * Parses data from webpages
  * @param {string} url - the url of the webpage
  * @returns {Promise<Record<string, any>>[]}
-*/
+ */
 
-async function cheerio (url: string = 'https://docs.smith.langchain.com/user_guide'): Promise<Array<Record<string, any>>> {
+async function cheerio(
+  url: string = 'https://www.in.gov.br/en/web/dou/-/resolucao-normativa-rn-n-465-de-24-de-fevereiro-de-2021-306209339'
+): Promise<Array<Record<string, any>>> {
   console.log(url)
-  const loader = new CheerioWebBaseLoader(
-    url
-  )
+  const loader = new CheerioWebBaseLoader(url)
 
   const docs = await loader.load()
 
@@ -40,9 +40,9 @@ async function cheerio (url: string = 'https://docs.smith.langchain.com/user_gui
  * split the document into more manageable chunks
  * @param {Record<string, any>} docs - the document to be split
  * @returns {Promise<Record<string, any>>[]}
-*/
+ */
 
-async function docSplitter (docs: any) {
+async function docSplitter(docs: any) {
   const splitter = new RecursiveCharacterTextSplitter()
 
   const splitDocs = await splitter.splitDocuments(docs)
@@ -62,13 +62,10 @@ const embeddings = new OpenAIEmbeddings()
  * @param {Record<string, any>} splitDocs - the document to be split
  * @param {Record<string, any>} embeddings - the embeddings to be stored
  * @returns {Promise<void>}
-*/
+ */
 
 const memoryVectorStore = async (splitDocs?: any, embeddings?: any) => {
-  const vec = await MemoryVectorStore.fromDocuments(
-    splitDocs,
-    embeddings
-  )
+  const vec = await MemoryVectorStore.fromDocuments(splitDocs, embeddings)
   return vec
 }
 /**
@@ -77,13 +74,15 @@ const memoryVectorStore = async (splitDocs?: any, embeddings?: any) => {
  */
 const retrievalChain = async (retriever?: any) => {
   const prompt =
-  ChatPromptTemplate.fromTemplate(`Answer the following question based only on the provided context:
+    ChatPromptTemplate.fromTemplate(`Answer the following question based only on the provided context:
 
     <context>
     {context}
     </context>
 
     Question: {input}`)
+
+  const chatModel = new ChatOpenAI({})
 
   const documentChain = await createStuffDocumentsChain({
     llm: chatModel,
@@ -105,14 +104,14 @@ const retrievalChain = async (retriever?: any) => {
 /**
  * Main function
  */
-async function main () {
+async function main() {
   // const url = 'https://docs.smith.langchain.com/user_guide'
   const docs = await cheerio()
   const splitDocs = await docSplitter(docs)
   const vectorstore = await memoryVectorStore(splitDocs, embeddings)
   const retriever = vectorstore.asRetriever()
 
-  const question = 'what is LangSmith?'
+  const question = 'o que diz a DUT n 71 do anexo 2 da RN 465/2021 da ANS?'
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
   const retrieval_chain = await retrievalChain(retriever)
