@@ -31,6 +31,8 @@
     "@langchain/community": "^0.0.35",
     "@langchain/core": "^0.1.41",
     "@langchain/openai": "^0.0.16",
+    "@langchain/pinecone": "^0.0.3",
+    "@pinecone-database/pinecone": "^2.1.0",
     "cheerio": "1.0.0-rc.12",
     "dotenv": "^16.4.5",
     "hnswlib-node": "^2.1.1",
