@@ -1,0 +1,500 @@
+[
+  {
+    "numero": 1,
+    "nome": "ABLAÇÃO POR RADIOFREQUÊNCIA/CRIOABLAÇÃO DO CÂNCER PRIMÁRIO HEPÁTICO",
+    "indicacoes": [
+      "Carcinoma hepático primário",
+      "Doença restrita ao fígado",
+      "Lesões menores que 4cm"
+    ],
+    "metodo": [
+      "Radiofrequência",
+      "Crioablação",
+      "Videolaparoscopia",
+      "Percutânea",
+      "Guiada por ultrassonografia",
+      "Guiada por tomografia computadorizada"
+    ]
+  },
+  {
+    "numero": "2",
+    "nome": "ACILCARNITINAS, PERFIL QUALITATIVO E/OU QUANTITATIVO COM ESPECTROMETRIA DE MASSA EM TANDEM",
+    "indicacoes": [
+      "Crianças com episódios recorrentes de hipoglicemia hipocetótica ou deterioração neurológica rápida",
+      "Crianças com síndrome de Reye ou 'Reye-like'",
+      "Pacientes com cardiomiopatia dilatada ou hipertrófica sem diagnóstico etiológico",
+      "Pacientes com miopatia esquelética ou doenças neuromusculares",
+      "Pacientes assintomáticos com história familiar de defeito de beta-oxidação dos ácidos graxos ou acilcarnitinas",
+      "Pacientes assintomáticos com história familiar de morte súbita de etiologia não definida",
+      "Pacientes assintomáticos com história de síndrome HELLP ou Fígado Gorduroso Agudo da Gravidez na mãe durante a gestação"
+    ],
+    "metodo": ["Espectrometria de massas em tandem qualitativo e quantitativo"]
+  },
+  {
+    "numero": "3",
+    "nome": "ANGIOTOMOGRAFIA CORONARIANA",
+    "indicacoes": [
+      "Avaliação inicial de pacientes sintomáticos com probabilidade pré-teste de 10 a 70%",
+      "Dor torácica aguda em pacientes com TIMI RISK 1 e 2",
+      "Descartar doença coronariana isquêmica em pacientes com diagnóstico de insuficiência cardíaca recente",
+      "Pacientes com quadro clínico e exames complementares conflitantes",
+      "Pacientes com suspeita de coronárias anômalas"
+    ],
+    "metodo": [
+      "Realização apenas em aparelhos multislice com 64 colunas de detectores ou mais"
+    ]
+  },
+  {
+    "numero": "4",
+    "nome": "ANTICORPOS ANTI PEPTÍDEO CÍCLICO CITRULINADO - IGG (ANTI CCP)",
+    "indicacoes": ["Investigação diagnóstica de Artrite Reumatóide"],
+    "metodo": [
+      "Análise de sangue para detecção de anticorpos anti peptídeo cíclico citrulinado - IgG"
+    ]
+  },
+  {
+    "numero": "5",
+    "nome": "AUDIOMETRIA VOCAL COM MENSAGEM COMPETITIVA / AVALIAÇÃO DO PROCESSAMENTO AUDITIVO CENTRAL",
+    "indicacoes": [
+      "Dificuldades de aprendizagem",
+      "Dificuldade de compreensão em ambientes ruidosos",
+      "Dificuldade de comunicação oral e/ou escrita",
+      "Agitados, hiperativos ou muito quietos",
+      "Alteração de comportamento e/ou de atenção",
+      "Dificuldades auditivas não orgânicas (resultado de audiometria tonal normal)"
+    ],
+    "metodo": [
+      "Avaliação Fonoaudiológica no Transtorno de Processamento Auditivo Central",
+      "Avaliação do Processamento Auditivo Central"
+    ]
+  },
+  {
+    "numero": 6,
+    "nome": "AVIDEZ DE IGG PARA TOXOPLASMOSE",
+    "indicacoes": ["Gestantes com sorologia IgM positiva para toxoplasmose"],
+    "metodo": ["Teste de avidez de IgG"]
+  },
+  {
+    "numero": 7,
+    "nome": "BIÓPSIA PERCUTÂNEA À VÁCUO GUIADA POR RAIO X, ULTRASSONOGRAFIA OU RESSONÂNCIA MAGNÉTICA (MAMOTOMIA)",
+    "indicacoes": [
+      "Lesões/alterações com categoria BI-RADS 4 ou 5",
+      "Lesões/alterações não palpáveis de qualquer tamanho",
+      "Lesões/alterações palpáveis de até 1,5 cm",
+      "Lesões/alterações palpáveis maiores do que 1,5 cm com dúvida diagnóstica após core biopsy"
+    ],
+    "metodo": [
+      "Biópsia percutânea à vácuo",
+      "Guiada por raio X, ultrassonografia ou ressonância magnética"
+    ]
+  },
+  {
+    "numero": "8",
+    "nome": "BLOQUEIO COM TOXINA BOTULÍNICA TIPO A PARA TRATAMENTO DE DISTONIAS FOCAIS, ESPASMO HEMIFACIAL E ESPASTICIDADE",
+    "indicacoes": [
+      "blefaroespasmo",
+      "distonia laríngea",
+      "espasmo hemifacial",
+      "distonia cervical",
+      "distonia oromandibular",
+      "câimbra do escrivão",
+      "paraplegia espástica tropical (CID G04.1)",
+      "paralisia cerebral espástica (CID G80.0)",
+      "diplegia espástica (CID G80.1)",
+      "hemiplegia infantil (CID G80.2)",
+      "hemiplegia espástica (CID G81.1)",
+      "paraplegia espástica (CID G82.1)",
+      "tetraplegia espástica (CID G82.4)",
+      "sequelas de hemorragia subaracnóidea (CID I69.0)",
+      "sequelas de hemorragia intracerebral (CID I69.1)",
+      "sequelas de outras hemorragias intracranianas não traumáticas (CID I69.2)",
+      "sequelas de infarto cerebral (CID I69.3)",
+      "sequelas de acidente vascular cerebral não especificado como hemorrágico ou isquêmico (CID I69.4)",
+      "sequelas de outras doenças cerebrovasculares e das não especificadas (CID I69.8)",
+      "sequelas de traumatismo intracraniano (CID T90.5)",
+      "sequelas de outros traumatismos especificados da cabeça (CID T90.8)"
+    ],
+    "metodo": ["bloqueio com toxina botulínica tipo A"]
+  },
+  {
+    "numero": 9,
+    "nome": "BRAF 1",
+    "indicacoes": [
+      "Indicação de uso de medicação com análise de presença/mutação dos genes",
+      "Diagnóstico de elegibilidade para o início do tratamento"
+    ],
+    "metodo": ["Análise de presença/mutação dos genes"]
+  },
+  {
+    "numero": "10",
+    "nome": "CINTILOGRAFIA DO MIOCÁRDIO",
+    "indicacoes": [
+      "Síndrome Coronariana Aguda",
+      "Dor Torácica Aguda",
+      "Disfunção Ventricular Grave",
+      "Cirurgia Vascular Arterial",
+      "Cirurgia Geral de Risco Intermediário ou Alto",
+      "Diabetes Mellitus",
+      "Revascularização Miocárdica Prévia"
+    ],
+    "metodo": ["Cintilografia de Perfusão Miocárdica de Repouso e de Estresse"]
+  },
+  {
+    "numero": "11",
+    "nome": "Cirurgia de Esterilização Feminina (Laqueadura Tubária/ Laqueadura Tubária Laparoscópica)",
+    "indicacoes": ["Risco à vida ou à saúde da mulher ou do futuro concepto"],
+    "metodo": ["Cirurgia de esterilização feminina"]
+  },
+  {
+    "numero": "12",
+    "nome": "CIRURGIA DE ESTERILIZAÇÃO MASCULINA (VASECTOMIA)",
+    "indicacoes": [
+      "homens com capacidade civil plena",
+      "maiores de vinte e cinco anos de idade ou com, pelo menos, dois filhos vivos"
+    ],
+    "metodo": [
+      "realizado por profissional habilitado para proceder a sua reversão"
+    ]
+  },
+  {
+    "numero": "13",
+    "nome": "CIRURGIA REFRATIVA - PRK OU LASIK",
+    "indicacoes": [
+      "Pacientes com mais de 18 anos",
+      "Grau estável há pelo menos 1 ano",
+      "Miopia moderada e grave de graus entre -5,0 a -10,0 DE com ou sem astigmatismo associado com grau até -4,0 DC",
+      "Hipermetropia até grau 6,0 DE com ou sem astigmatismo associado com grau até 4,0 DC"
+    ],
+    "metodo": ["Cirurgia refrativa PRK", "Cirurgia refrativa LASIK"]
+  },
+  {
+    "numero": "14",
+    "nome": "CITOMEGALOVÍRUS – QUALITATIVO, POR PCR",
+    "indicacoes": [
+      "pacientes imunocomprometidos",
+      "pacientes com infecções congênitas"
+    ],
+    "metodo": ["PCR"]
+  },
+  {
+    "numero": 15,
+    "nome": "COLOBOMA - CORREÇÃO CIRÚRGICA",
+    "indicacoes": [
+      "exposição corneal",
+      "risco de úlcera e perfuração de córnea"
+    ],
+    "metodo": []
+  },
+  {
+    "numero": 16,
+    "nome": "COLOCAÇÃO DE BANDA GÁSTRICA POR VIDEOLAPAROSCOPIA OU POR VIA LAPAROTÔMICA",
+    "indicacoes": [
+      "Pacientes com idade entre 18 e 65 anos",
+      "Falha no tratamento clínico realizado por pelo menos 2 anos",
+      "Obesidade mórbida instalada há mais de cinco anos",
+      "IMC entre 35 Kg/m2 e 39,9 Kg/m2 com co-morbidades que ameacem a vida",
+      "IMC entre 40 Kg/m2 e 50 Kg/m2 com ou sem co-morbidade"
+    ],
+    "metodo": ["Videolaparoscopia", "Via laparotômica"]
+  },
+  {
+    "numero": "17",
+    "nome": "CORDOTOMIA-MIELOTOMIAS POR RADIOFREQUÊNCIA",
+    "indicacoes": [
+      "Dor de origem neoplásica",
+      "Espasticidade em pacientes paraplégicos não deambuladores para tratamento da dor nociceptiva"
+    ],
+    "metodo": ["Radiofrequência"]
+  },
+  {
+    "numero": 18,
+    "nome": "ABDOMINOPLASTIA",
+    "indicacoes": ["Abdome em avental decorrente de grande perda ponderal"],
+    "metodo": []
+  },
+  {
+    "numero": 19,
+    "nome": "DÍMERO-D",
+    "indicacoes": [
+      "Avaliação de pacientes adultos com sinais e sintomas de trombose venosa profunda dos membros inferiores",
+      "Avaliação hospitalar ou em unidades de emergência de pacientes adultos com sinais e sintomas de embolia pulmonar",
+      "Avaliação hospitalar ou em unidades de emergência de pacientes com pneumonia ou síndrome respiratória aguda grave, com quadro suspeito ou confirmado de infecção pelo SARS-CoV-2 (COVID 19)"
+    ],
+    "metodo": []
+  },
+  {
+    "numero": "20",
+    "nome": "ECODOPPLERCARDIOGRAMA FETAL COM MAPEAMENTO DE FLUXO",
+    "indicacoes": ["gestantes com idade gestacional a partir de 18 semanas"],
+    "metodo": ["ecodopplercardiograma fetal com mapeamento de fluxo"]
+  },
+  {
+    "numero": 21,
+    "nome": "EGFR",
+    "indicacoes": [
+      "Indicação de uso de medicação com análise de presença/mutação dos genes"
+    ],
+    "metodo": ["Análise genética"]
+  },
+  {
+    "numero": "22",
+    "nome": "ELETROFORESE DE PROTEÍNAS DE ALTA RESOLUÇÃO",
+    "indicacoes": [
+      "investigação do mieloma múltiplo",
+      "investigação do plasmocitoma",
+      "investigação de gamopatia monoclonal",
+      "outras doenças imunoproliferativas"
+    ],
+    "metodo": ["eletroforese de proteínas de alta resolução"]
+  },
+  {
+    "numero": 23,
+    "nome": "EMBOLIZAÇÃO DE ARTÉRIA UTERINA",
+    "indicacoes": [
+      "Leiomiomas uterinos intramurais sintomáticos",
+      "Miomas múltiplos sintomáticos"
+    ],
+    "metodo": ["Embolização de artéria uterina"]
+  },
+  {
+    "numero": "24",
+    "nome": "ESTIMULAÇÃO ELÉTRICA TRANSCUTÂNEA",
+    "indicacoes": [
+      "dor neurogênica",
+      "dor músculo-esquelética",
+      "dor visceral",
+      "dor simpaticamente mediada",
+      "dor pós-traumática",
+      "dor leve a moderada pós-operatória",
+      "espasticidade da lesão medular",
+      "hemiplegia decorrente de acidente vascular encefálico"
+    ],
+    "metodo": ["estimulação elétrica transcutânea"]
+  },
+  {
+    "numero": 25,
+    "nome": "FATOR V LEIDEN, ANÁLISE DE MUTAÇÃO",
+    "indicacoes": [
+      "paciente com evento trombótico ou tromboembólico não provocado (idiopático)",
+      "pacientes com trombose em sítios não usuais",
+      "pacientes com parente de primeiro grau com história familiar documentada de trombofilia hereditária",
+      "pacientes com história de trombose recorrente"
+    ],
+    "metodo": ["teste genético comprobatório", "exame de imagem"]
+  },
+  {
+    "numero": "26",
+    "nome": "GALACTOSE-1-FOSFATO URIDILTRANSFERASE",
+    "indicacoes": [
+      "Recém-nascidos com teste de triagem neonatal positivo para galactosemia",
+      "Pacientes com suspeita de doenças do metabolismo da galactose, especialmente galactosemia clássica"
+    ],
+    "metodo": []
+  },
+  {
+    "numero": 27,
+    "nome": "GASTROPLASTIA (CIRURGIA BARIÁTRICA) POR VIDEOLAPAROSCOPIA OU POR VIA LAPAROTÔMICA",
+    "indicacoes": [
+      "Pacientes maiores de 18 anos",
+      "Pacientes entre 16 e 18 anos, com escore-z maior que +4 na análise do IMC por idade e epífises de crescimento consolidadas",
+      "Índice de Massa Corpórea (IMC) de 35 Kg/m2 a 39,9 Kg/m2, com co-morbidades que ameacem a vida",
+      "IMC de 40 Kg/m2 a 49,9 Kg/m2, com ou sem co-morbidades",
+      "IMC igual ou maior do que 50 Kg/m2"
+    ],
+    "metodo": ["Videolaparoscopia", "Via laparotômica"]
+  },
+  {
+    "numero": "28",
+    "nome": "HEPATITE B - TESTE QUANTITATIVO",
+    "indicacoes": [
+      "Caracterização da fase replicativa da infecção pelo vírus da hepatite B (HBV) com HBeAg negativo em pacientes cirróticos ou com coagulopatias em avaliação para início de tratamento",
+      "Avaliação inicial pré-tratamento para a hepatite B de pacientes portadores de HBsAg positivo, ALT elevada e HBeAg negativo",
+      "Monitorização após o tratamento medicamentoso de pacientes com prováveis cepas mutantes pre-core"
+    ],
+    "metodo": [
+      "Teste quantitativo para avaliação da carga viral do vírus da hepatite B"
+    ]
+  },
+  {
+    "numero": 29,
+    "nome": "HEPATITE C - GENOTIPAGEM 1",
+    "indicacoes": [
+      "Avaliação para início de tratamento da hepatite C",
+      "Presença de atividade necro-inflamatória e fibrose moderada a intensa em biópsia hepática realizada nos últimos 2 anos",
+      "Pacientes com hepatite viral aguda C",
+      "Pacientes com hepatite viral crônica C com idade entre 12 e 70 anos, contagem de plaquetas acima de 50.000/mm3 e contagem de neutrófilos superior a 1.500/mm3"
+    ],
+    "metodo": []
+  },
+  {
+    "numero": "30",
+    "nome": "HER-2",
+    "indicacoes": [
+      "pacientes com indicação de uso de medicação em que a bula determine a análise de presença/mutação dos genes para o início do tratamento"
+    ],
+    "metodo": ["análise de presença/mutação dos genes"]
+  },
+  {
+    "numero": 31,
+    "nome": "HIV, GENOTIPAGEM",
+    "indicacoes": [
+      "pacientes em uso regular de TARV há pelo menos 6 meses e com carga viral detectável acima de 5.000 cópias/ml",
+      "gestantes em uso regular de TARV há pelo menos 3 meses e com carga viral acima de 5.000 cópias/ml",
+      "pacientes candidatos ao uso de enfuvurtida (T20)"
+    ],
+    "metodo": [
+      "genotipagem anterior indicando multi-resistência",
+      "presença de 'R' a todas as drogas segundo algoritmo da RENAGENO"
+    ]
+  },
+  {
+    "numero": 32,
+    "nome": "HLA-B27, FENOTIPAGEM",
+    "indicacoes": ["Investigação diagnóstica de Espondilite Anquilosante"],
+    "metodo": ["Fenotipagem do HLA-B27"]
+  },
+  {
+    "numero": 33,
+    "nome": "IMPLANTE COCLEAR",
+    "indicacoes": [
+      "crianças com até 4 anos de idade incompletos com perda auditiva neurossensorial de grau severo e/ou profundo bilateral",
+      "crianças de 4 a 7 anos de idade incompletos com perda auditiva neurossensorial de grau severo e/ou profundo bilateral",
+      "crianças de 7 a 12 anos de idade incompletos com perda auditiva neurossensorial de grau severo e/ou profundo bilateral",
+      "adolescentes, adultos e idosos com perda auditiva neurossensorial pré-lingual de grau severo e/ou profundo bilateral",
+      "adolescentes, adultos e idosos com perda auditiva neurossensorial pós-lingual de grau severo e/ou profundo bilateral",
+      "crianças com diagnóstico de Espectro da Neuropatia Auditiva",
+      "pacientes com cegueira associada à surdez"
+    ],
+    "metodo": [
+      "uso de AASI",
+      "implante coclear",
+      "reabilitação fonoaudiológica"
+    ]
+  },
+  {
+    "numero": 34,
+    "nome": "IMPLANTE DE ANEL INTRAESTROMAL",
+    "indicacoes": [
+      "ceratocone",
+      "visão insatisfatória com uso de óculos e lentes de contato",
+      "intolerância a lentes de contato"
+    ],
+    "metodo": ["implante de anel intraestromal"]
+  },
+  {
+    "numero": 35,
+    "nome": "IMPLANTE DE CARDIODESFIBRILADOR IMPLANTÁVEL - CDI (INCLUI ELETRODOS E GERADOR)",
+    "indicacoes": [
+      "Sobreviventes de parada cardíaca documentada devido à taquicardia ventricular espontânea hemodinamicamente instável ou fibrilação ventricular, de causa não reversível",
+      "Taquicardia ventricular sustentada, hemodinamicamente instável, espontânea, de causa não reversível, com cardiopatia estrutural",
+      "Síncope de origem indeterminada com indução ao estudo eletrofisiológico de taquicardia ventricular sustentada, hemodinamicamente instável ou fibrilação ventricular",
+      "Prevenção primária na cardiopatia isquêmica, em sobreviventes de infarto agudo do miocárdio há pelo menos 40 dias, sob tratamento farmacológico ótimo, sem isquemia miocárdica passível de revascularização cirúrgica ou percutânea"
+    ],
+    "metodo": [
+      "Implantação de cardiodesfibrilador implantável",
+      "Inclusão de eletrodos e gerador"
+    ]
+  },
+  {
+    "numero": "36",
+    "nome": "IMPLANTE DE CARDIODESFIBRILADOR MULTISSÍTIO - TRC-D (GERADOR E ELETRODOS)",
+    "indicacoes": [
+      "Prevenção secundária em pacientes com critérios do Grupo I e Grupo II preenchidos",
+      "Prevenção primária em pacientes com cardiopatia isquêmica ou sobreviventes de infarto agudo do miocárdio há pelo menos 40 dias, sem isquemia passível de revascularização cirúrgica ou percutânea e com todos os critérios do Grupo II preenchidos",
+      "Prevenção primária em pacientes com cardiomiopatia dilatada não isquêmica e critérios do Grupo II preenchidos"
+    ],
+    "metodo": [
+      "Implante de cardiodesfibrilador multissítio",
+      "Utilização de gerador e eletrodos específicos"
+    ]
+  },
+  {
+    "numero": "37",
+    "nome": "IMPLANTE DE ELETRODOS E/OU GERADOR PARA ESTIMULAÇÃO MEDULAR",
+    "indicacoes": ["síndrome de dor crônica de origem neuropática"],
+    "metodo": []
+  },
+  {
+    "numero": 38,
+    "nome": "IMPLANTE DE ELETRODOS E/OU GERADOR PARA ESTIMULAÇÃO CEREBRAL PROFUNDA",
+    "indicacoes": [
+      "Doença de Parkinson idiopática",
+      "Tremor essencial não parkinsoniano",
+      "Distonia primária",
+      "Epilepsia"
+    ],
+    "metodo": [
+      "Implante de eletrodos",
+      "Implante de gerador",
+      "Estimulação cerebral profunda"
+    ]
+  },
+  {
+    "numero": 40,
+    "nome": "IMPLANTE DE MARCA-PASSO BICAMERAL (GERADOR + ELETRODOS ATRIAL E VENTRICULAR)",
+    "indicacoes": [
+      "Doença do nó sinusal",
+      "Síndrome do Seio Carotídeo",
+      "BAV de primeiro grau",
+      "BAV de segundo grau",
+      "BAV de terceiro grau",
+      "Bloqueios Intraventriculares",
+      "Síncope Neuro-Mediadas"
+    ],
+    "metodo": [
+      "Implante de marca-passo bicameral",
+      "Estudo eletrofisiológico",
+      "Massagem do seio carotídeo",
+      "Teste farmacológico",
+      "Estimulação atrial",
+      "Ablação da junção do nó AV"
+    ]
+  },
+  {
+    "numero": "41",
+    "nome": "IMPLANTE DE MARCA-PASSO MONOCAMERAL (GERADOR + ELETRODOS ATRIAL OU VENTRICULAR)",
+    "indicacoes": [
+      "Doença do nó sinusal",
+      "Síndrome do Seio Carotídeo",
+      "BAV de primeiro grau",
+      "BAV de segundo grau",
+      "BAV de terceiro grau",
+      "Bloqueios Intraventriculares",
+      "Síncope Neuro-Mediadas"
+    ],
+    "metodo": [
+      "Estudo Eletrofisiológico",
+      "Massagem do seio carotídeo",
+      "Teste farmacológico",
+      "Ablação da junção do nó AV",
+      "Implante de marcapasso definitivo"
+    ]
+  },
+  {
+    "numero": 42,
+    "nome": "IMPLANTE DE MARCAPASSO MULTISSÍTIO (INCLUI ELETRODOS E GERADOR)",
+    "indicacoes": [
+      "Pacientes com FEVE ≤35%",
+      "Ritmo sinusal",
+      "Expectativa de vida de pelo menos 1 ano",
+      "Tratamento clínico otimizado"
+    ],
+    "metodo": ["Implante de marcapasso multissítio", "Eletrodos", "Gerador"]
+  },
+  {
+    "numero": "43",
+    "nome": "IMPLANTE DE MONITOR DE EVENTOS (LOOPER IMPLANTÁVEL)",
+    "indicacoes": [
+      "Pacientes com história de pelo menos 3 síncopes de origem indeterminada nos últimos 2 anos",
+      "Pacientes pós acidente vascular cerebral criptogênico ou ataque isquêmico transitório com causa indeterminada com suspeita de fibrilação atrial"
+    ],
+    "metodo": []
+  },
+
+  {
+    "numero": "44",
+    "nome": "IMPLANTE DE PRÓTESE AUDITIVA ANCORADA NO OSSO",
+    "indicacoes": [],
+    "metodo": []
+  }
+]
