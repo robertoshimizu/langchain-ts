@@ -17,6 +17,8 @@ import {
 
 dotenv.config()
 
+// Chain elements
+
 async function textLoader(filePath: string) {
   const loader = new TextLoader(filePath)
   const docs = await loader.load()
@@ -61,6 +63,10 @@ interface MetaDut {
   metodo: any
 }
 
+// Takes a directory of text files and returns a list of documents
+// in this case we got chapters of DUT from Anex II of RN 465/2021
+// and we transform them into Document object, also generating metadata
+
 async function text2Doc(fileDir: any) {
   const docs: any = []
 
@@ -83,7 +89,7 @@ async function text2Doc(fileDir: any) {
 }
 import { formatDocumentsAsString } from 'langchain/util/document'
 
-async function main() {
+async function self_query() {
   console.log('Starting...')
   //const docs = await text2Doc('src/documents')
   console.log('Documents successfully generated ...')
@@ -225,7 +231,7 @@ async function main() {
   // }
 }
 
-async function main2() {
+async function self_query_from_langchain_example() {
   const dogs = [
     new Document({
       pageContent:
@@ -347,4 +353,4 @@ async function main2() {
   console.log('query4:', query4, '\n')
 }
 // npx ts-node src/intelliModel/dut_vector.ts
-void main()
+void self_query()
