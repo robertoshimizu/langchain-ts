@@ -62,7 +62,7 @@ class Tuss {
     await this.ensureInitialized() // Ensure the class is initialized before searching
     try {
       const results = await this.vectorStore.similaritySearch(query)
-      return JSON.stringify(results, null, 2)
+      return JSON.stringify(results)
     } catch (error) {
       console.error('Error searching PineconeStore', error)
     }
@@ -71,12 +71,12 @@ class Tuss {
 
 async function main() {
   console.log('Starting...')
-  const tuss = new Tuss()
+  //const tuss = new Tuss()
   // Wait for the initialization to complete before searching
-  await new Promise((resolve) => setTimeout(resolve, 1000))
-  const res = await tuss.search(
-    'qual é o código TUSS de angioplastia e informe se tem DUT?'
-  )
+  // await new Promise((resolve) => setTimeout(resolve, 1000))
+  // const res = await tuss.search(
+  //   'qual é o código TUSS de angioplastia e informe se tem DUT?'
+  // )
 
   // console.log('Results:', typeof res)
 
@@ -84,9 +84,7 @@ async function main() {
     console.log('My function')
     const tuss = new Tuss()
     await new Promise((resolve) => setTimeout(resolve, 1000))
-    const res = await tuss.search(
-      'qual é o código TUSS de angioplastia e informe se tem DUT?'
-    )
+    const res = await tuss.search(query)
     return res?.toString()
   }
 
@@ -115,7 +113,7 @@ async function main() {
       'system',
       `You are a helpful assistant to provide the TUSS data for a medical term. You are going to research and provide the information to another llm model downstream.
        There is a close relationship among TUSS, the ANS list (rol ANS), and the Technical Use Guidelines (DUTs). If during the search, it retrieves more than one document,
-       then you MUST provide all the documents for all of them. YOU must provide the llm downstream the most possible information so it can have conditions to answer its questions.
+       then you MUST provide all the documents for all of them. YOU must provide the llm downstream the most complete information so it can have conditions to answer its questions.
        YOU MUST answer in the language idiom of the query.`
     ],
     ['user', '{input}'],
@@ -140,7 +138,7 @@ async function main() {
   })
 
   const result = await agentExecutor.invoke({
-    input: `TUSS angioplastia. Is it included in the ANS role? Does it have DUT?`
+    input: `TUSS Biopsia de boca. Is it included in the ANS role? Does it have DUT?`
   })
 
   console.log(`Got output ${result.output}`)
