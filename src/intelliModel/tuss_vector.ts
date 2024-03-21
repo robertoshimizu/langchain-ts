@@ -39,9 +39,9 @@ class Tuss {
         apiKey: process.env.PINECONE_API_KEY!
       })
       const indexes = await await pc.listIndexes()
-      console.log('Indexes:', indexes)
+      //console.log('Indexes:', indexes)
       const tuss_index_info = await pc.describeIndex('tuss')
-      console.log('tuss index: ', tuss_index_info)
+      //console.log('tuss index: ', tuss_index_info)
       const pineconeIndex = pc.Index('tuss')
 
       this.vectorStore = await PineconeStore.fromExistingIndex(
@@ -61,7 +61,8 @@ class Tuss {
   async search(query: string) {
     await this.ensureInitialized() // Ensure the class is initialized before searching
     try {
-      const results = await this.vectorStore.similaritySearch(query)
+      const results = await this.vectorStore.similaritySearchWithScore(query)
+      console.log('Results:', results)
       return JSON.stringify(results)
     } catch (error) {
       console.error('Error searching PineconeStore', error)
@@ -114,7 +115,8 @@ async function main() {
       `You are a helpful assistant to provide the TUSS data for a medical term. You are going to research and provide the information to another llm model downstream.
        There is a close relationship among TUSS, the ANS list (rol ANS), and the Technical Use Guidelines (DUTs). If during the search, it retrieves more than one document,
        then you MUST provide all the documents for all of them. YOU must provide the llm downstream the most complete information so it can have conditions to answer its questions.
-       YOU MUST answer in the language idiom of the query.`
+       YOU MUST answer in the language idiom of the query.
+       If the term does not relate to a TUSS, or if you cannot find any information you MUST return an empty screen.`
     ],
     ['user', '{input}'],
     new MessagesPlaceholder('agent_scratchpad')
@@ -134,11 +136,12 @@ async function main() {
   const agentExecutor = new AgentExecutor({
     agent,
     tools,
-    verbose: true
+    verbose: false,
+    maxIterations: 5
   })
 
   const result = await agentExecutor.invoke({
-    input: `TUSS Biopsia de boca. Is it included in the ANS role? Does it have DUT?`
+    input: 'Codigo TUSS para Hepatorrafia por videolaparoscopia'
   })
 
   console.log(`Got output ${result.output}`)
