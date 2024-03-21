@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChatOpenAI } from '@langchain/openai'
 import dotenv from 'dotenv'
-import { ChatPromptTemplate } from '@langchain/core/prompts'
+import {
+  ChatPromptTemplate,
+  MessagesPlaceholder
+} from '@langchain/core/prompts'
 import { StringOutputParser } from '@langchain/core/output_parsers'
 import { TextLoader } from 'langchain/document_loaders/fs/text'
 import { MemoryVectorStore } from 'langchain/vectorstores/memory'
@@ -16,6 +19,9 @@ import {
 } from '@langchain/core/runnables'
 import { Pinecone } from '@pinecone-database/pinecone'
 import { PineconeStore } from '@langchain/pinecone'
+import { DynamicStructuredTool, DynamicTool } from '@langchain/core/tools'
+import { z } from 'zod'
+import { AgentExecutor, createOpenAIFunctionsAgent } from 'langchain/agents'
 
 dotenv.config()
 
@@ -56,7 +62,7 @@ class Tuss {
     await this.ensureInitialized() // Ensure the class is initialized before searching
     try {
       const results = await this.vectorStore.similaritySearch(query)
-      console.log(results)
+      return JSON.stringify(results, null, 2)
     } catch (error) {
       console.error('Error searching PineconeStore', error)
     }
@@ -66,9 +72,78 @@ class Tuss {
 async function main() {
   console.log('Starting...')
   const tuss = new Tuss()
-  await tuss.search(
+  // Wait for the initialization to complete before searching
+  await new Promise((resolve) => setTimeout(resolve, 1000))
+  const res = await tuss.search(
     'qual é o código TUSS de angioplastia e informe se tem DUT?'
   )
+
+  // console.log('Results:', typeof res)
+
+  const myfunc = async (query: string) => {
+    console.log('My function')
+    const tuss = new Tuss()
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    const res = await tuss.search(
+      'qual é o código TUSS de angioplastia e informe se tem DUT?'
+    )
+    return res?.toString()
+  }
+
+  const get_tuss_info = new DynamicStructuredTool({
+    name: 'TUSS_Search',
+    description: `Call this to get the TUSS of a medical, therapeutic, diagnostic procedure, OR materials and medicines.
+                  There is a close relationship among TUSS, the ANS list (rol ANS), and the Technical Use Guidelines (DUTs).
+                  If the term is uncomplete, you need to return all documents that contain the name of the term.`,
+    schema: z.object({
+      name_of_term: z
+        .string()
+        .describe(
+          'term that describes a medical, therapeutic, diagnostic procedures OR  materials and medicine'
+        )
+    }),
+    func: async ({ name_of_term }) => {
+      const result = await myfunc(name_of_term)
+      return result || '' // Ensure a string value is always returned, even if it is undefined
+    }
+  })
+
+  const tools = [get_tuss_info]
+
+  const prompt = ChatPromptTemplate.fromMessages([
+    [
+      'system',
+      `You are a helpful assistant to provide the TUSS data for a medical term. You are going to research and provide the information to another llm model downstream.
+       There is a close relationship among TUSS, the ANS list (rol ANS), and the Technical Use Guidelines (DUTs). If during the search, it retrieves more than one document,
+       then you MUST provide all the documents for all of them. YOU must provide the llm downstream the most possible information so it can have conditions to answer its questions.
+       YOU MUST answer in the language idiom of the query.`
+    ],
+    ['user', '{input}'],
+    new MessagesPlaceholder('agent_scratchpad')
+  ])
+
+  const llm = new ChatOpenAI({
+    modelName: 'gpt-3.5-turbo-1106',
+    temperature: 0
+  })
+
+  const agent = await createOpenAIFunctionsAgent({
+    llm,
+    tools,
+    prompt
+  })
+
+  const agentExecutor = new AgentExecutor({
+    agent,
+    tools,
+    verbose: true
+  })
+
+  const result = await agentExecutor.invoke({
+    input: `TUSS angioplastia. Is it included in the ANS role? Does it have DUT?`
+  })
+
+  console.log(`Got output ${result.output}`)
 }
 
 // npx ts-node src/intelliModel/tuss_vector.ts
