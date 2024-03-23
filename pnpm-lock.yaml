@@ -23,6 +23,9 @@ dependencies:
   '@pinecone-database/pinecone':
     specifier: ^2.1.0
     version: 2.1.0
+  axios:
+    specifier: ^1.6.8
+    version: 1.6.8
   cheerio:
     specifier: 1.0.0-rc.12
     version: 1.0.0-rc.12
@@ -34,7 +37,7 @@ dependencies:
     version: 2.1.1
   langchain:
     specifier: ^0.1.25
-    version: 0.1.25(@pinecone-database/pinecone@2.1.0)(cheerio@1.0.0-rc.12)(hnswlib-node@2.1.1)(pdf-parse@1.1.1)(peggy@4.0.2)
+    version: 0.1.25(@pinecone-database/pinecone@2.1.0)(axios@1.6.8)(cheerio@1.0.0-rc.12)(hnswlib-node@2.1.1)(pdf-parse@1.1.1)(peggy@4.0.2)
   openai:
     specifier: ^4.28.4
     version: 4.28.4
@@ -2187,7 +2190,7 @@ packages:
       json-buffer: 3.0.1
     dev: true
 
-  /langchain@0.1.25(@pinecone-database/pinecone@2.1.0)(cheerio@1.0.0-rc.12)(hnswlib-node@2.1.1)(pdf-parse@1.1.1)(peggy@4.0.2):
+  /langchain@0.1.25(@pinecone-database/pinecone@2.1.0)(axios@1.6.8)(cheerio@1.0.0-rc.12)(hnswlib-node@2.1.1)(pdf-parse@1.1.1)(peggy@4.0.2):
     resolution: {integrity: sha512-sfEChvr4H2CklHdSByNBbytwBrFhgtA5kPOnwcBrxuXGg1iOaTzhVxQA0QcNcQucI3hZrsNbZjxGp+Can1ooZQ==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -2351,6 +2354,7 @@ packages:
       '@langchain/core': 0.1.41
       '@langchain/openai': 0.0.16
       '@pinecone-database/pinecone': 2.1.0
+      axios: 1.6.8
       binary-extensions: 2.2.0
       cheerio: 1.0.0-rc.12
       expr-eval: 2.0.2

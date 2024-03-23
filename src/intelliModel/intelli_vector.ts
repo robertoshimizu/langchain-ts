@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import * as readline from 'readline'
 import { ChatOpenAI } from '@langchain/openai'
 import dotenv from 'dotenv'
 import {
@@ -24,6 +25,20 @@ import { z } from 'zod'
 import { AgentExecutor, createOpenAIFunctionsAgent } from 'langchain/agents'
 
 dotenv.config()
+
+async function askQuestion(question: string): Promise<string> {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  })
+
+  return new Promise((resolve) => {
+    rl.question(question, (answer) => {
+      rl.close()
+      resolve(answer)
+    })
+  })
+}
 
 class Tuss {
   private vectorStore!: PineconeStore
@@ -145,6 +160,12 @@ class Agent {
   }
 }
 
+export function getAgent() {
+  const tools = [get_tuss_info]
+  const agent = new Agent(tools)
+  return agent
+}
+
 async function main() {
   console.log('Starting...')
   //const tuss = new Tuss()
@@ -156,15 +177,18 @@ async function main() {
 
   // console.log('Results:', typeof res)
 
-  const tools = [get_tuss_info]
-  const agent = new Agent(tools)
-  agent.initializeAgent().then(() => {
-    agent
-      .executeAgent('Codigo TUSS para Hepatorrafia por videolaparoscopia')
-      .then((output) => {
-        console.log(output)
-      })
-  })
+  const question = await askQuestion('O que você gostaria de pesquisar hoje? ')
+  // 'Codigo TUSS para Hepatorrafia por videolaparoscopia'
+  console.log(`query: ${question}!`)
+  const agent = getAgent()
+  await agent.initializeAgent()
+  const output = await agent.executeAgent(question)
+  console.log(output)
+  // agent.initializeAgent().then(() => {
+  //   agent.executeAgent(question).then(output => {
+  //     console.log(output)
+  //   })
+  // })
 }
 
 // npx ts-node src/intelliModel/intelli_vector.ts

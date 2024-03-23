@@ -33,6 +33,7 @@
     "@langchain/openai": "^0.0.16",
     "@langchain/pinecone": "^0.0.3",
     "@pinecone-database/pinecone": "^2.1.0",
+    "axios": "^1.6.8",
     "cheerio": "1.0.0-rc.12",
     "dotenv": "^16.4.5",
     "hnswlib-node": "^2.1.1",
