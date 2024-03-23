@@ -42,7 +42,7 @@ function extractProcedures(text: string) {
 }
 
 async function splitAnexII() {
-  const filePath = 'dut_ans.txt'
+  const filePath = 'dut_ans_errata.txt'
   // Read the content of the file
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
@@ -67,7 +67,7 @@ async function splitAnexII() {
     // If you need to check the content of a section without printing to console,
     // you could write the content to a new text file to inspect it
     sections.forEach((section, index) => {
-      const outputFilePath = `dut/section_${index + 1}.txt`
+      const outputFilePath = `dut/sectionERR_${index + 1}.txt`
       fs.writeFile(outputFilePath, section, 'utf8', (writeErr) => {
         if (writeErr) {
           console.error(`Error writing section ${index + 1} to file:`, writeErr)

@@ -71,9 +71,9 @@ interface MetaDut {
 async function text2Doc(fileDir: any) {
   const docs: any = []
 
-  for (let i = 4; i < 43; i++) {
+  for (let i = 1; i < 6; i++) {
     try {
-      const loadedDocs = await textLoader(`${fileDir}/section_${i}.txt`)
+      const loadedDocs = await textLoader(`${fileDir}/sectionERR_${i}.txt`)
       const doc = loadedDocs[0]
       doc.pageContent = doc.pageContent.replace(/\r/g, '')
       // Extract and ask llm to generate metadata
@@ -406,16 +406,16 @@ async function readDocuments(filePath: string): Promise<Document[]> {
 
 async function main() {
   console.log('Starting...')
-  //const docs: Document[] = await text2Doc('dut')
-  //console.log('Number of Documents generated:', docs.length)
-  //console.log(docs)
+  const docs: Document[] = await text2Doc('dut')
+  console.log('Number of Documents generated:', docs.length)
+  console.log(docs)
 
-  const filePath = 'dut/dut.json'
-  //await saveDocuments(docs, filePath)
+  const filePath = 'dut/duta.json'
+  await saveDocuments(docs, filePath)
 
   const loadedDocs = await readDocuments(filePath)
   console.log('Loaded documents:', loadedDocs.length)
-  console.log('documents:', loadedDocs[67])
+  console.log('documents:', loadedDocs[1])
 }
 // npx ts-node src/intelliModel/dut_vector.ts
 void main()
